@@ -122,4 +122,64 @@ img {
     font-size: 0.95rem;
     color: #555;
     line-height: 1.5;
+
+}
+/* コラム全体のレイアウト */
+.column-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+/* 個別のコラムアイテム（横長デザイン） */
+.column-item {
+    display: flex;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.column-image img {
+    width: 200px;
+    height: 100%;
+    object-fit: cover;
+    margin: 0;
+    border-radius: 0;
+}
+
+.column-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.column-content h3 {
+    margin-top: 0;
+    font-size: 1.2rem;
+    color: #2ba640; /* noteカラーに近い緑で統一感 */
+}
+
+.column-btn {
+    align-self: flex-start;
+    margin-top: 10px;
+    padding: 5px 15px;
+    background: #2ba640;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+/* スマホで見るときは縦に並べる */
+@media (max-width: 600px) {
+    .column-item {
+        flex-direction: column;
+    }
+    .column-image img {
+        width: 100%;
+        height: 150px;
+    }
 }
