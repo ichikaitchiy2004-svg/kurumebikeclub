@@ -183,3 +183,38 @@ img {
         height: 150px;
     }
 }
+
+.note-container {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.note-item {
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+}
+
+.note-item:last-child {
+    border-bottom: none;
+}
+
+.note-item a {
+    text-decoration: none;
+    display: block;
+}
+
+.note-date {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.note-title {
+    margin: 5px 0 0 0;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.note-item a:hover .note-title {
+    color: #2ba640; /* noteカラー */
+}
