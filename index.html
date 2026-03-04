@@ -136,6 +136,8 @@
             <div class="column-content">
                 <h3>週間トレーニング</h3>
                 <p>週間でトレーニング記録をnoteに記録しています。</p>
+                <div id="note-list" class="note-container">
+                <p>読み込み中...</p>
                 <a href="https://note.com/ichika750/m/m951534a42994" target="_blank" class="column-btn">記事を読む</a>
             </div>
         </article>
@@ -154,10 +156,49 @@
     <footer>
         <p>&copy; 2026 自転車同好会</p>
     </footer>
+<script>
+async function fetchNoteMagazine() {
+    
+    const rssUrl = 'https://note.com/ichika750/m/m951534a42994/rss';
+    // RSSをJSONに変換してくれる無料サービスを利用します
+    const api = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+    try {
+        const response = await fetch(api);
+        const data = await response.json();
+        const list = document.getElementById('note-list');
+        list.innerHTML = ''; // 「読み込み中」を消す
 
+        // ★ ここで日付（pubDate）の新しい順に並び替えます
+        const sortedItems = data.items.sort((a, b) => {
+            return new Date(b.pubDate) - new Date(a.pubDate);
+        });
 
+        // 最新の3件を表示
+        data.items.slice(0, 3).forEach(item => {
+            const date = new Date(item.pubDate).toLocaleDateString();
+            const html = `
+                <article class="note-item">
+                    <a href="${item.link}" target="_blank" class="note-link">
+                    
+                        <div class="note-text">
+                            <span class="note-date">${date}</span>
+                            <h3 class="note-title">${item.title}</h3>
+                        </div>
+                    </a>
+                </article>
+            `;
+            list.insertAdjacentHTML('beforeend', html);
+        });
+    } catch (error) {
+        console.error('読み込み失敗:', error);
+        document.getElementById('note-list').innerHTML = '<p>noteの読み込みに失敗しました。</p>';
+    }
+}
+fetchNoteMagazine();
+</script>
 </body>
 </html>
+
 
 
 
