@@ -278,6 +278,7 @@ h2 {
     box-shadow: var(--shadow-sm);
     transition: var(--transition);
     border: 1px solid #f0f0f0;
+    position: relative;
 }
 
 .column-item:hover {
@@ -308,6 +309,24 @@ h2 {
     color: var(--primary-light);
 }
 
+.column-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.column-link::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.column-link:hover {
+    color: var(--primary-color);
+}
 .column-content p {
     color: var(--text-muted);
     margin-top: 0;
@@ -325,9 +344,11 @@ h2 {
     font-weight: 600;
     font-size: 0.9rem;
     transition: var(--transition);
+    display: inline-block;
 }
 
-.column-btn:hover {
+.column-btn:hover,
+.column-item:hover .column-btn {
     background: var(--primary-color);
     box-shadow: 0 4px 12px rgba(22, 147, 43, 0.3);
     color: #fff;
@@ -506,4 +527,5 @@ footer {
         height: 200px;
     }
 }
+
 
